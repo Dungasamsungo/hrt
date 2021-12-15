@@ -51,7 +51,7 @@ public class UserController {
                                            @RequestParam String proposedTime,
                                            @RequestParam String actualStartTime,
                                            @RequestParam String endTime,
-                                           @RequestParam String exitTime) {
+                                           @RequestParam String exitTime){
         User n = userRepository.findById(id);
         n.setName(name);
         n.setStatus(status);
@@ -60,7 +60,7 @@ public class UserController {
         n.setActualStartTime(actualStartTime);
         n.setEndTime(endTime);
         n.setExitTime(exitTime);
-        
+
         userRepository.save(n);
         return "Updated";
     }
