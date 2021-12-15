@@ -17,11 +17,17 @@
             const xhttp = new XMLHttpRequest();
             id = document.getElementById("id").value;
             name = document.getElementById("name").value;
+            status = document.getElementById("status").value;
+            location = document.getElementById("location").value;
 
             if (id > 0) {
-                xhttp.open("PUT", `/user/${id}?name=${name}`);
+                xhttp.open("PUT", `/user/${id}?name=${name}
+                                              ?status=${status}
+                                              ?location=${location}`);
             } else {
-                xhttp.open("POST", `/user/?name=${name}`);
+                xhttp.open("POST", `/user/?name=${name}
+                                          ?status=${status}
+                                          ?location=${location}`);
             }
 
             xhttp.send();
@@ -42,7 +48,11 @@
                 for (const i in lsUser) {
                     console.log(lsUser[i])
                     u = lsUser[i]
-                    out += `<tr onclick='activate(${i})'><td>${u.name}</td></tr>`;
+                    out += `<tr onclick='activate(${i})'><td>${u.name}</td>
+                                                         <td>${u.status}</td>
+                                                         <td>${u.location}</td>
+                                                         
+                            </tr>`;
                 }
                 document.getElementById("tbody").innerHTML = out;
             }
@@ -51,10 +61,14 @@
             u = lsUser[id]
             document.getElementById("id").value = u.id;
             document.getElementById("name").value = u.name;
+            document.getElementById("status").value = u.status;
+            document.getElementById("location").value = u.location;
         }
         function clearForm() {
             document.getElementById("id").value = "";
-            document.getElementById("name").value = "";
+            document.getElementById("name").value = ""; 
+            document.getElementById("status").value = "";
+            document.getElementById("location").value = ""; 
         }
         function deleteUser() {
             const xhttp = new XMLHttpRequest();
@@ -68,17 +82,33 @@
             }
         }
     </script>
+
     <div class="container mt-3">
         <h2>Form!!!</h2>
         <form>
+            
             <div class="mb-3 mt-3">
-                <input type="hidden" id="id" name="id">
-                <label for="name">Name:</label>
-                <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+                    <div>
+                        <input type="hidden" id="id" name="id">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
+    
+                    </div>
+                    
+                    <div class = "col">
+                        <label for="status" class="form-label">Select Status:</label>
+                        <select class="form-select" id="status" name="status">
+                          <option class="floating-lable">Surgery Status</option> 
+                          <option value="Pre-Opp">Pre-Opp</option>
+                          <option value="Intra-Opp">Intra-Opp</option>
+                          <option value="Recovery">Recovery</option>
+                          <option value="Transfered">Transfered</option>
+                          <option value ="Discharged">Discharged</option>
+                        </select>
+                    </div>
+
             </div>
-            <button type="button" class="btn btn-primary" onclick="save()">Save</button>
-            <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
-            <button type="button" class="btn btn-danger" onclick="deleteUser()">Clear</button>
+            
         </form>
     </div>
     <div class="container mt-3">
@@ -86,6 +116,8 @@
             <thead>
                 <tr>
                     <th>Name</th>
+                    <th>Status</th>
+                    <th>Location</th>
                 </tr>
             </thead>
             <tbody id="tbody">

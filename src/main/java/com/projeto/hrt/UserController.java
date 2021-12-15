@@ -18,9 +18,13 @@ public class UserController {
     private UserRepository userRepository;
 
     @PostMapping(path = "/") // Map ONLY POST Requests
-    public @ResponseBody String addNewUser(@RequestParam String name) {
+    public @ResponseBody String addNewUser(@RequestParam String name,
+                                           @RequestParam String status,
+                                           @RequestParam String location) {
         User n = new User();
         n.setName(name);
+        n.setStatus(status);
+        n.setLocation(location);
         userRepository.save(n);
         return "Saved";
     }
@@ -31,9 +35,14 @@ public class UserController {
     }
 
     @PutMapping(path="/{id}")
-    public @ResponseBody String updateUser(@PathVariable int id, @RequestParam String name) {
+    public @ResponseBody String updateUser(@PathVariable int id,
+                                           @RequestParam String name,
+                                           @RequestParam String status,
+                                           @RequestParam String location) {
         User n = userRepository.findById(id);
         n.setName(name);
+        n.setStatus(status);
+        n.setLocation(location);
         userRepository.save(n);
         return "Updated";
     }
