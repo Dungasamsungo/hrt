@@ -84,11 +84,12 @@
     </script>
 
     <div class="container mt-3">
-        <h2>Form!!!</h2>
+        <h2 class="col lg 10 mt-1">Patient Generation Panel At HRT Surgical Center<samp id="view"></samp></h2>
         <form>
             
-            <div class="mb-3 mt-3">
-                    <div>
+            <div class="row mb-3 mt-3">
+
+                    <div class="col">
                         <input type="hidden" id="id" name="id">
                     <label for="name">Name:</label>
                     <input type="text" class="form-control" id="name" placeholder="Enter name" name="name">
@@ -105,6 +106,23 @@
                           <option value="Transfered">Transfered</option>
                           <option value ="Discharged">Discharged</option>
                         </select>
+                    </div>
+
+                    <div class = "col">
+                        <label for="location" class="form-label">Select Patients Location:</label>
+                        <select class="form-select" id="location" placeholder="Patient's Location" name="plocation">
+                          <option>Pre opp room</option>
+                          <option>Theather 1</option>
+                          <option>Theather 2</option>
+                          <option>Theather 3</option>
+                          <option>Theather 4</option>
+                          <option>Ward 1 </option>
+                          <option>Ward 2 </option>
+                          <option>Ward 3 </option>
+                          <option>Ward 4 </option>
+                        </select>
+                    
+                        
                     </div>
 
             </div>
