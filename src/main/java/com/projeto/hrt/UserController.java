@@ -20,11 +20,20 @@ public class UserController {
     @PostMapping(path = "/") // Map ONLY POST Requests
     public @ResponseBody String addNewUser(@RequestParam String name,
                                            @RequestParam String status,
-                                           @RequestParam String location) {
+                                           @RequestParam String location,
+                                           @RequestParam String proposedTime,
+                                           @RequestParam String actualStartTime,
+                                           @RequestParam String endTime,
+                                           @RequestParam String exitTime) {
         User n = new User();
         n.setName(name);
         n.setStatus(status);
         n.setLocation(location);
+        n.setProposedTime(proposedTime);
+        n.setActualStartTime(actualStartTime);
+        n.setEndTime(endTime);
+        n.setExitTime(exitTime);
+
         userRepository.save(n);
         return "Saved";
     }
@@ -38,11 +47,20 @@ public class UserController {
     public @ResponseBody String updateUser(@PathVariable int id,
                                            @RequestParam String name,
                                            @RequestParam String status,
-                                           @RequestParam String location) {
+                                           @RequestParam String location,
+                                           @RequestParam String proposedTime,
+                                           @RequestParam String actualStartTime,
+                                           @RequestParam String endTime,
+                                           @RequestParam String exitTime) {
         User n = userRepository.findById(id);
         n.setName(name);
         n.setStatus(status);
         n.setLocation(location);
+        n.setProposedTime(proposedTime);
+        n.setActualStartTime(actualStartTime);
+        n.setEndTime(endTime);
+        n.setExitTime(exitTime);
+        
         userRepository.save(n);
         return "Updated";
     }

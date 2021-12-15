@@ -11,6 +11,7 @@
     <form th:action="@{/logout}" method="post">
         <input type="submit" value="Sign Out" />
     </form>
+
     <script>
         lsUser = []
         function save() {
@@ -19,15 +20,27 @@
             name = document.getElementById("name").value;
             status = document.getElementById("status").value;
             location = document.getElementById("location").value;
+            proposedTime = document.getElementById("proposedTime").value;
+            actualStartTime = document.getElementById("actualStartTime").value;
+            endTime = document.getElementById("endTime").value;
+            exitTime = document.getElementById("exitTime").value;
 
             if (id > 0) {
                 xhttp.open("PUT", `/user/${id}?name=${name}
                                               ?status=${status}
-                                              ?location=${location}`);
+                                              ?location=${location}
+                                              ?proposedTime=${proposedTime}
+                                              ?actualStartTime=${actualStartTime}
+                                              ?endTime=${endTime}
+                                              ?exitTime=${exitTime}`);
             } else {
                 xhttp.open("POST", `/user/?name=${name}
                                           ?status=${status}
-                                          ?location=${location}`);
+                                          ?location=${location}
+                                          ?proposedTime=${proposedTime}
+                                          ?actualStartTime=${actualStartTime}
+                                          ?endTime=${endTime}
+                                          ?exitTime=${exitTime}`);
             }
 
             xhttp.send();
@@ -51,7 +64,10 @@
                     out += `<tr onclick='activate(${i})'><td>${u.name}</td>
                                                          <td>${u.status}</td>
                                                          <td>${u.location}</td>
-                                                         
+                                                         <td>${u.proposedTime}</td>
+                                                         <td>${u.actualStartTime}</td>
+                                                         <td>${u.endTime}</td>
+                                                         <td>${u.exitTime}</td>
                             </tr>`;
                 }
                 document.getElementById("tbody").innerHTML = out;
@@ -63,12 +79,20 @@
             document.getElementById("name").value = u.name;
             document.getElementById("status").value = u.status;
             document.getElementById("location").value = u.location;
+            document.getElementById("proposedTime").value = u.proposedTime;
+            document.getElementById("actualStartTime").value = u.actualStartTime;
+            document.getElementById("endTime").value = u.endTime;
+            document.getElementById("exitTime").value = u.exitTime;
         }
         function clearForm() {
             document.getElementById("id").value = "";
             document.getElementById("name").value = ""; 
             document.getElementById("status").value = "";
             document.getElementById("location").value = ""; 
+            document.getElementById("proposedTime").value = "";
+            document.getElementById("actualStartTime").value = ""; 
+            document.getElementById("endTime").value = "";
+            document.getElementById("exitTime").value = "";
         }
         function deleteUser() {
             const xhttp = new XMLHttpRequest();
@@ -129,8 +153,33 @@
                           <option>Ward 3 </option>
                           <option>Ward 4 </option>
                         </select>
-                    
-                        
+
+                     </div>
+
+
+                     <div class = "row p-3">
+                        <div class = "col">
+                            <label for="proposedTime">Proposed Start Time: </label>
+                            <input type="time" class="form-control" id="proposedTime" name="proposedTime">
+                        </div>
+                        <div class = "col">
+                            <label for="actualStartTime">Actual Start Time: </label>
+                            <input type="time" class="form-control" id="actualStartTime" name="actualStartTime">
+                        </div>
+                        <div class = "col">
+                            <label for="endTime">Surgery End Time: </label>
+                            <input type="time" class="form-control" id="endTime" name="endTime">
+                        </div>
+                        <div class = "col">
+                            <label for="endTime">Exit Time: </label>
+                            <input type="time" class="form-control" id="exitTime" name="exitTime">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="button" class="btn btn-primary" onclick="save()">Save</button>
+                        <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteUser()">Clear</button>
                     </div>
 
             </div>
@@ -139,11 +188,15 @@
     </div>
     <div class="container mt-3">
         <table class="table table-hover" style="cursor: pointer;">
-            <thead>
+            <thead class="table-success">
                 <tr>
-                    <th>Name</th>
-                    <th>Status</th>
-                    <th>Location</th>
+                    <th width= "40%"   >Name</th>
+                    <th width= "30%" >Status</th>
+                    <th width= "30%" >Location</th>
+                    <th width= "10%" >Proposed Start Time</th>
+                    <th width= "10%">Actual Start Time</th>
+                    <th width= "10%">Surgery End Time</th>
+                    <th width= "10%">Exit Time</th>
                 </tr>
             </thead>
             <tbody id="tbody">

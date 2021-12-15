@@ -15,6 +15,42 @@ public class User {
     private String name;
     private String status;
     private String location;
+    private String proposedTime;
+    private String actualStartTime;
+    private String endTime;
+    private String exitTime;
+
+    public String getProposedTime() {
+        return proposedTime;
+    }
+
+    public void setProposedTime(String proposedTime) {
+        this.proposedTime = proposedTime;
+    }
+
+    public String getActualStartTime() {
+        return actualStartTime;
+    }
+
+    public void setActualStartTime(String actualStartTime) {
+        this.actualStartTime = actualStartTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+
+    public String getExitTime() {
+        return exitTime;
+    }
+
+    public void setExitTime(String exitTime) {
+        this.exitTime = exitTime;
+    }
     
 
     public String getStatus() {
