@@ -20,70 +20,57 @@ public class User {
     private String endTime;
     private String exitTime;
 
-    public String getProposedTime() {
-        return proposedTime;
-    }
 
-    public void setProposedTime(String proposedTime) {
-        this.proposedTime = proposedTime;
-    }
-
-    public String getActualStartTime() {
-        return actualStartTime;
-    }
-
-    public void setActualStartTime(String actualStartTime) {
-        this.actualStartTime = actualStartTime;
-    }
-
-    public String getEndTime() {
-        return endTime;
-    }
-
-    public void setEndTime(String endTime) {
-        this.endTime = endTime;
-    }
-
-    public String getExitTime() {
-        return exitTime;
-    }
-
-    public void setExitTime(String exitTime) {
-        this.exitTime = exitTime;
-    }
     
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public String getLocation() {
+        return location;
+    }
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    public String getProposedTime() {
+        return proposedTime;
+    }
+    public void setProposedTime(String proposedTime) {
+        this.proposedTime = proposedTime;
+    }
+    public String getActualStartTime() {
+        return actualStartTime;
+    }
+    public void setActualStartTime(String actualStartTime) {
+        this.actualStartTime = actualStartTime;
+    }
+    public String getEndTime() {
+        return endTime;
+    }
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
+    }
+    public String getExitTime() {
+        return exitTime;
+    }
+    public void setExitTime(String exitTime) {
+        this.exitTime = exitTime;
+    }
 
+    
     
 }
