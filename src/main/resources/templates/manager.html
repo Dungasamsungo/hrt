@@ -5,6 +5,7 @@
 <head>
     <title>Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script></script>
 </head>
 
 <body>
@@ -12,101 +13,128 @@
         <input type="submit" value="Sign Out" />
     </form>
 
-    <script>
-        lsUser = []
-        function save() {
-            const xhttp = new XMLHttpRequest();
-            id = document.getElementById("id").value;
-            name = document.getElementById("name").value;
-            status = document.getElementById("status").value;
-            loc = document.getElementById("loc").value;
-            proposedTime = document.getElementById("proposedTime").value;
-            actualStartTime = document.getElementById("actualStartTime").value;
-            endTime = document.getElementById("endTime").value;
-            exitTime = document.getElementById("exitTime").value;
+   <script> lsUser = []
+    function save() {
+        const xhttp = new XMLHttpRequest();
+        id = document.getElementById("id").value;
+        name = document.getElementById("name").value;
+        if(name == ""){
+            alert("patient name is REQUIRED")
+            return false
+        }
+        status = document.getElementById("status").value;
+        loc = document.getElementById("loc").value;
+        proposedTime = document.getElementById("proposedTime").value;
+        actualStartTime = document.getElementById("actualStartTime").value;
+        endTime = document.getElementById("endTime").value;
+        exitTime = document.getElementById("exitTime").value;
 
-            if (id > 0) {
-                xhttp.open("PUT", `/user/${id}?name=${name}
-                                              &status=${status}
-                                              &location=${loc}
-                                              &proposedTime=${proposedTime}
-                                              &actualStartTime=${actualStartTime}
-                                              &endTime=${endTime}
-                                              &exitTime=${exitTime}`);
-            } else {
-                xhttp.open("POST", `/user/?name=${name}
-                                             &status=${status}
-                                             &location=${loc}
-                                             &proposedTime=${proposedTime}
-                                             &actualStartTime=${actualStartTime}
-                                             &endTime=${endTime}
-                                             &exitTime=${exitTime}`);
-            }
-
-            xhttp.send();
+        if (id > 0) {
+          
             
-            xhttp.onload = function () {
-                alert(this.responseText);
-                listAllUser();
-                clearForm();
-            }
-        }
-        function listAllUser() {
+            xhttp.open("PUT", `/user/${id}?name=${name}
+                                          &status=${status}
+                                          &location=${loc}
+                                          &proposedTime=${proposedTime}
+                                          &actualStartTime=${actualStartTime}
+                                          &endTime=${endTime}
+                                          &exitTime=${exitTime}`);
+        } else {
+            
+            xhttp.open("POST", `/user/?name=${name}
+                                         &status=${status}
+                                         &location=${loc}
+                                         &proposedTime=${proposedTime}
+                                         &actualStartTime=${actualStartTime}
+                                         &endTime=${endTime}
+                                         &exitTime=${exitTime}`);
 
-            const xhttp = new XMLHttpRequest();
-            xhttp.open("GET", `/user/`);
-            xhttp.send();
-            xhttp.onload = function () {
-                lsUser = JSON.parse(this.responseText);
-                out = "";
-                for (const i in lsUser) {
-                    console.log(lsUser[i])
-                    u = lsUser[i]
-                    out += `<tr onclick='activate(${i})'><td>${u.name}</td>
-                                                         <td>${u.status}</td>
-                                                         <td>${u.location}</td>
-                                                         <td>${u.proposedTime}</td>
-                                                         <td>${u.actualStartTime}</td>
-                                                         <td>${u.endTime}</td>
-                                                         <td>${u.exitTime}</td>
-                            </tr>`;
-                }
-                document.getElementById("tbody").innerHTML = out;
+               
+        }
+
+        xhttp.send();
+        
+        xhttp.onload = function () {
+            alert(this.responseText);
+            listAllUser();
+            clearForm();
+        }
+
+
+    }
+    function listAllUser() {
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", `/user/`);
+        xhttp.send();
+        xhttp.onload = function () {
+            lsUser = JSON.parse(this.responseText);
+            out = "";
+            for (const i in lsUser) {
+                console.log(lsUser[i])
+                u = lsUser[i]
+                out += `<tr onclick='activate(${i})'><td>${u.name}</td>
+                                                     <td>${u.status}</td>
+                                                     <td>${u.location}</td>
+                                                     <td>${u.proposedTime}</td>
+                                                     <td>${u.actualStartTime}</td>
+                                                     <td>${u.endTime}</td>
+                                                     <td>${u.exitTime}</td>
+                        </tr>`;
             }
+            document.getElementById("tbody").innerHTML = out;
         }
-        function activate(id) {
-            u = lsUser[id]
-            document.getElementById("id").value = u.id;
-            document.getElementById("name").value = u.name;
-            document.getElementById("status").value = u.status;
-            document.getElementById("loc").value = u.location;
-            document.getElementById("proposedTime").value = u.proposedTime;
-            document.getElementById("actualStartTime").value = u.actualStartTime;
-            document.getElementById("endTime").value = u.endTime;
-            document.getElementById("exitTime").value = u.exitTime;
-        }
-        function clearForm() {
-            document.getElementById("id").value = "";
-            document.getElementById("name").value = ""; 
-            document.getElementById("status").value = "";
-            document.getElementById("loc").value = ""; 
-            document.getElementById("proposedTime").value = "";
-            document.getElementById("actualStartTime").value = ""; 
-            document.getElementById("endTime").value = "";
-            document.getElementById("exitTime").value = "";
-        }
-        function deleteUser() {
-            const xhttp = new XMLHttpRequest();
-            id = document.getElementById("id").value;
-            xhttp.open("DELETE", `/user/${id}`);
-            xhttp.send();
-            xhttp.onload = function () {
-                alert(this.responseText);
-                listAllUser();
-                clearForm();
+    }
+
+
+
+    function activate(id) {
+        u = lsUser[id]
+        document.getElementById("id").value = u.id;
+        document.getElementById("name").value = u.name;
+        document.getElementById("status").value = u.status;
+        document.getElementById("loc").value = u.location;
+        document.getElementById("proposedTime").value = u.proposedTime;
+        document.getElementById("actualStartTime").value = u.actualStartTime;
+        document.getElementById("endTime").value = u.endTime;
+        document.getElementById("exitTime").value = u.exitTime;
+    }
+
+
+
+    function clearForm() {
+        document.getElementById("id").value = "";
+        document.getElementById("name").value = ""; 
+        document.getElementById("status").value = "";
+        document.getElementById("loc").value = ""; 
+        document.getElementById("proposedTime").value = "";
+        document.getElementById("actualStartTime").value = ""; 
+        document.getElementById("endTime").value = "";
+        document.getElementById("exitTime").value = "";
+    }
+
+
+
+    function deleteUser() {
+        const xhttp = new XMLHttpRequest();
+        id = document.getElementById("id").value;
+        if (id == '') {
+             alert("Select a user!");
+                            return;
             }
+            if (!confirm("Do you really want to delete this user?")) {
+                return;
+            }
+
+        xhttp.open("DELETE", `/user/${id}`);
+        xhttp.send();
+        xhttp.onload = function () {
+            alert(this.responseText);
+            listAllUser();
+            clearForm();
         }
-    </script>
+    }
+</script>
 
     <div class="container mt-3">
             <div class="row">
@@ -180,6 +208,7 @@
                         <button type="button" class="btn btn-primary" onclick="save()">Save</button>
                         <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
                         <button type="button" class="btn btn-danger" onclick="deleteUser()">Delete</button>
+                        <a href="List.html" class="btn btn-success" role="button">VIEW LIST</a>
                     </div>
 
             </div>
