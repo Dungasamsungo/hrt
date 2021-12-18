@@ -9,9 +9,7 @@
 </head>
 
 <body>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" value="Sign Out" />
-    </form>
+   
 
    <script> lsUser = []
     function save() {
@@ -208,8 +206,12 @@
                         <button type="button" class="btn btn-primary" onclick="save()">Save</button>
                         <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
                         <button type="button" class="btn btn-danger" onclick="deleteUser()">Delete</button>
-                        <!--<a href="List.html" class="btn btn-success" role="button">VIEW LIST</a>
-                    </div>-->
+                        <p><a href="List.html">View List</a></p>
+                         <form th:action="@{/logout}" method="post" class="d-flex justify-content-end">
+                        <input type="submit" value="Sign Out" />
+                         </form >
+                    </div>
+                   
 
             </div>
             
