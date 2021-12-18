@@ -136,9 +136,7 @@
 
     <div class="container mt-3">
             <div class="row">
-               <!-- <div class="col">
-                    <img src="Logo.png" alt="HRT Logo" height = "100px">
-                </div>-->
+              
                 <div>
                     <h2 class="col mt-1">Patient Generation Panel At HRT Surgical Center<samp id="view"></samp></h2>
                 </div>
@@ -206,7 +204,7 @@
                         <button type="button" class="btn btn-primary" onclick="save()">Save</button>
                         <button type="button" class="btn btn-secondary" onclick="clearForm()">Clear</button>
                         <button type="button" class="btn btn-danger" onclick="deleteUser()">Delete</button>
-                        <p><a href="List.html">View List</a></p>
+                        <a href="/list" class="btn btn-success" role="button">VIEW LIST</a>
                          <form th:action="@{/logout}" method="post" class="d-flex justify-content-end">
                         <input type="submit" value="Sign Out" />
                          </form >
