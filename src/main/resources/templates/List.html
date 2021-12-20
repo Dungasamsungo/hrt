@@ -51,7 +51,33 @@
 				document.getElementById("tbody").innerHTML = tabela;
 			}
 			documento.myTimer();
-		   
+
+
+            function status(status) {
+			switch (status) {
+			case 'Pre-Opp':
+				return {
+					label : 'Pre-opp',
+					cor : '#fbd972'
+				};
+			case 'Intra-Opp':
+				return {
+					label : 'intra-opp',
+					cor : '#fd5766'
+				};
+			case 'recovery':
+				return {
+					label : 'recovery',
+					cor : '#89e89f'
+				};
+			case 'tranfered':
+				return {
+					label : 'tranfered',
+					cor : '#b8daff'
+				};
+			}
+		}
+		 document.status()  
 
 </script>
 
