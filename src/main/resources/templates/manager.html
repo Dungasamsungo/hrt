@@ -28,24 +28,12 @@
         exitTime = document.getElementById("exitTime").value;
 
         if (id > 0) {
-          
+        url = `name=${name}&status=${status}&location=${loc}&proposedTime=${proposedTime}&actualStartTime=${actualStartTime}&endTime=${endTime}&exitTime=${exitTime}`;
             
-            xhttp.open("PUT", `/user/${id}?name=${name}
-                                          &status=${status}
-                                          &location=${loc}
-                                          &proposedTime=${proposedTime}
-                                          &actualStartTime=${actualStartTime}
-                                          &endTime=${endTime}
-                                          &exitTime=${exitTime}`);
+            xhttp.open("PUT", `/user/${id}?${url}`);
         } else {
             
-            xhttp.open("POST", `/user/?name=${name}
-                                         &status=${status}
-                                         &location=${loc}
-                                         &proposedTime=${proposedTime}
-                                         &actualStartTime=${actualStartTime}
-                                         &endTime=${endTime}
-                                         &exitTime=${exitTime}`);
+            xhttp.open("POST", `/user/?${url}`);
 
                
         }
@@ -69,10 +57,18 @@
             lsUser = JSON.parse(this.responseText);
             out = "";
             for (const i in lsUser) {
-                console.log(lsUser[i])
+                // console.log(lsUser[i])
                 u = lsUser[i]
+                cor = ""
+                try{
+                    s = fStatus(u.status)
+                    cor = s.cor
+                }catch{
+
+                }
+                
                 out += `<tr onclick='activate(${i})'><td>${u.name}</td>
-                                                     <td>${u.status}</td>
+                                                     <td style="background-color: ${cor};">${u.status}</td>
                                                      <td>${u.location}</td>
                                                      <td>${u.proposedTime}</td>
                                                      <td>${u.actualStartTime}</td>
@@ -87,7 +83,8 @@
 
 
     function activate(id) {
-        u = lsUser[id]
+        u = lsUser[id];
+        // alert(JSON.stringify(u));
         document.getElementById("id").value = u.id;
         document.getElementById("name").value = u.name;
         document.getElementById("status").value = u.status;
@@ -133,7 +130,7 @@
         }
     }
 
-    function status(status) {
+    function fStatus(status) {
 			switch (status) {
 			case 'Pre-Opp':
 				return {
@@ -145,12 +142,12 @@
 					label : 'intra-opp',
 					cor : '#fd5766'
 				};
-			case 'recovery':
+			case 'Recovery':
 				return {
-					label : 'recovery',
+					label : 'Recovery',
 					cor : '#89e89f'
 				};
-			case 'tranfered':
+			case 'Transfered':
 				return {
 					label : 'tranfered',
 					cor : '#b8daff'
