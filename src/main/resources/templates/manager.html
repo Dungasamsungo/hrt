@@ -11,7 +11,8 @@
 <body>
    
 
-   <script> lsUser = []
+   <script>
+    lsUser = []
     function save() {
         const xhttp = new XMLHttpRequest();
         id = document.getElementById("id").value;
@@ -27,13 +28,15 @@
         endTime = document.getElementById("endTime").value;
         exitTime = document.getElementById("exitTime").value;
 
+
+        info = `name=${name}&status=${status}&location=${loc}&proposedTime=${proposedTime}&actualStartTime=${actualStartTime}&endTime=${endTime}&exitTime=${exitTime}`;
         if (id > 0) {
-        url = `name=${name}&status=${status}&location=${loc}&proposedTime=${proposedTime}&actualStartTime=${actualStartTime}&endTime=${endTime}&exitTime=${exitTime}`;
-            
-            xhttp.open("PUT", `/user/${id}?${url}`);
+       
+           
+            xhttp.open("PUT", `/user/${id}?${info}`);
         } else {
-            
-            xhttp.open("POST", `/user/${id}?${url}`);
+        
+            xhttp.open("POST", `/user/?${info}`);
 
                
         }
