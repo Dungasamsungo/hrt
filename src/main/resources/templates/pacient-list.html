@@ -22,20 +22,29 @@
                 lsUser = JSON.parse(this.responseText);
                 out = "";
                 for (const i in lsUser) {
-                    console.log(lsUser[i])
+                    // console.log(lsUser[i])
                     u = lsUser[i]
-                    out += `<tr onclick='activate(${i})'><td>${u.name}</td>
-                                                        <td>${u.status}</td>
-                                                        <td>${u.location}</td>
-                                                        <td>${u.proposedTime}</td>
-                                                        <td>${u.actualStartTime}</td>
-                                                        <td>${u.endTime}</td>
-                                                        <td>${u.exitTime}</td>
-                            </tr>`;
-                }
-            document.getElementById("tbody").innerHTML = out;
-            }
-        }
+                    cor = ""
+                    try{
+                        s = fStatus(u.status)
+                        cor = s.cor
+                    }catch{
+
+                    }
+        
+        out += `<tr onclick='activate(${i})'><td>${u.name}</td>
+                                             <td style="background-color: ${cor};">${u.status}</td>
+                                             <td>${u.location}</td>
+                                             <td>${u.proposedTime}</td>
+                                             <td>${u.actualStartTime}</td>
+                                             <td>${u.endTime}</td>
+                                             <td>${u.exitTime}</td>
+                </tr>`;
+    }
+    document.getElementById("tbody").innerHTML = out;
+}
+}
+
 
         var myVar = setInterval(listAllUser, 6000);
 
@@ -51,7 +60,7 @@
 			documento.myTimer();
 
 
-            function status(status) {
+            function fStatus(status) {
 			switch (status) {
 			case 'Pre-Opp':
 				return {
@@ -63,19 +72,19 @@
 					label : 'intra-opp',
 					cor : '#fd5766'
 				};
-			case 'recovery':
+			case 'Recovery':
 				return {
-					label : 'recovery',
+					label : 'Recovery',
 					cor : '#89e89f'
 				};
-			case 'tranfered':
+			case 'Transfered':
 				return {
 					label : 'tranfered',
 					cor : '#b8daff'
 				};
 			}
 		}
-		 document.status()  
+
 
 </script>
 
